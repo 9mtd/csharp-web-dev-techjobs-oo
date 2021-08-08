@@ -2,6 +2,9 @@
 namespace TechJobsOO
 {
     public class Location
+
+    //For a Location object, useful information includes a list of zip codes associated with that location,
+    //in order to determine the city and state for an employer or job.
     {
         public int Id { get; }
         private static int nextId = 1;
@@ -13,7 +16,13 @@ namespace TechJobsOO
             nextId++;
         }
 
-        // TODO: Add a second constructor to this class that uses the Location() constructor and sets the value of the value field.
+        // DONE: Add a second constructor to this class that uses the Location() constructor
+        // and sets the value of the value field.
+        public Location(string value) : this()
+        {
+            Value = value;
+        }
+
 
         public override bool Equals(object obj)
         {
