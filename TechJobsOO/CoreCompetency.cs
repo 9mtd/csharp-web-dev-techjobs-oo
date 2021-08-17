@@ -5,7 +5,7 @@ namespace TechJobsOO
     {
         private int id { get; set; }
         private static int nextId = 1;
-        private string value { get; set; }
+        public string value { get; set; }
 
         // DONE: Change the fields to auto-implemented properties.
 
