@@ -27,15 +27,6 @@ namespace TechJobsOO
         //name, employerName, employerLocation, jobType, and jobCoreCompetency.
         //Also, this constructor should call the first in order to initialize the id field.
 
-        //public Job(string name, Employer employer, Location employerLocation, PositionType positionType, CoreCompetency coreCompetency) : this()
-        //{
-        //    Name = name;
-        //    EmployerName = employer;
-        //    EmployerLocation = employerLocation;
-        //    JobType = positionType;
-        //    JobCoreCompetency = coreCompetency;
-        //}
-
         public Job(string name, string employer, string employerLocation, string positionType, string coreCompetency) : this()
         {
             Name = name;
@@ -56,5 +47,16 @@ namespace TechJobsOO
         {
             return HashCode.Combine(Id);
         }
-    }
+
+        // DONE: Create ToString() method. Return a blank line.
+        public override string ToString()
+        {
+            if (Id == 0)
+            {
+                return "empty field";
+            }
+            return $"\nId: {Id}\n Name: {Name}\n Employer: {EmployerName}\n Location: {EmployerLocation}\n Position Type: {JobType}\n Core Competency: {JobCoreCompetency}\n";
+        }
+
+        }
 }

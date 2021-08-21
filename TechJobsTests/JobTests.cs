@@ -8,6 +8,28 @@ namespace TechJobsTests
     [TestClass]
     public class JobTests
     {
+        private string Id = "1";
+        private string JobName = "Product tester";
+        private string EmployerName = "ACME";
+        private string JobLocation = "Dessert";
+        private string JobType = "Quality control";
+        private string JobCoreCompetency = "persistence";
+
+
+        Job test_job;
+
+        [TestInitialize]
+        public void CreateJobObject()
+        {
+            var jobName = JobName;
+            var employerName = EmployerName;
+            var jobLocation = JobLocation;
+            var jobType = JobType;
+            var jobCoreCompetency = JobCoreCompetency;
+
+            test_job = new Job(jobName, employerName, jobLocation, jobType, jobCoreCompetency);
+            
+        }
 
         [TestMethod]
         public void TestSettingJobId()
@@ -23,37 +45,72 @@ namespace TechJobsTests
         [TestMethod]
         public void TestJobConstructorSetsAllFields()
         {
-            var jobName = "Product tester";
-            var employerName = "ACME";
-            var jobLocation = "Dessert";
-            var jobType = "Quality control";
-            var jobCoreCompetency = "Persistence";
+            Assert.AreEqual(JobName, test_job.Name);
+            Assert.AreEqual(EmployerName, test_job.EmployerName);
+            Assert.AreEqual(JobLocation, test_job.EmployerLocation);
+            Assert.AreEqual(JobType, test_job.JobType);
+            Assert.AreEqual(JobCoreCompetency, test_job.JobCoreCompetency);
 
-            var job = new Job(jobName, employerName, jobLocation, jobType, jobCoreCompetency);
-
-            Assert.AreEqual(jobName, job.Name);
-            Assert.AreEqual(employerName, job.EmployerName.Value);
-            Assert.AreEqual(jobLocation, job.EmployerLocation.Value);
-            Assert.AreEqual(jobType, job.JobType.Value);
-            Assert.AreEqual(jobCoreCompetency, job.JobCoreCompetency.value);
         }
 
         [TestMethod]
         public void TestJobsForEquality()
         {
-            var jobName = "Product tester";
-            var employerName = "ACME";
-            var jobLocation = "Dessert";
-            var jobType = "Quality control";
-            var jobCoreCompetency = "Persistence";
-
-            var job1 = new Job(jobName, employerName, jobLocation, jobType, jobCoreCompetency);
-            var job2 = new Job(jobName, employerName, jobLocation, jobType, jobCoreCompetency);
+            var job1 = new Job(JobName, EmployerName, JobLocation, JobType, JobCoreCompetency);
+            var job2 = new Job(JobName, EmployerName, JobLocation, JobType, JobCoreCompetency);
 
             var isEqual = job1.Equals(job2);
 
             Assert.IsFalse(isEqual);
         }
 
-    }
+
+        [TestMethod]
+        public void TestToString_StartsWith_EndsWith_BlankLine()
+        {
+            var jobStr = test_job.ToString();
+
+            Assert.IsTrue(jobStr.StartsWith('\n'));
+            Assert.IsTrue(jobStr.EndsWith('\n'));
+        }
+
+        [TestMethod]
+        public void TestContainLabelForEachField()
+        {
+            var jobStr = test_job.ToString();
+
+            Assert.IsTrue(jobStr.Contains($"Id: {Id}\n"));
+            Assert.IsTrue(jobStr.Contains($"Name: {JobName}\n"));
+            Assert.IsTrue(jobStr.Contains($"Employer: {EmployerName}\n"));
+            Assert.IsTrue(jobStr.Contains($"Location: {JobLocation}\n"));
+            Assert.IsTrue(jobStr.Contains($"Position Type: {JobType}\n"));
+            Assert.IsTrue(jobStr.Contains($"Core Competency: {JobCoreCompetency}\n"));
+
+        }
+
+        [TestMethod]
+        public void TestGasOverfillException()
+        {
+            test_job.Name = "0";
+            Assert.Fail("Data not available");
+
+
+
+
+
+
+
 }
+}
+
+
+
+//var id = "1";
+//var jobName = "Product tester";
+//var employerName = "ACME";
+//var jobLocation = "Dessert";
+//var jobType = "Quality control";
+//var jobCoreCompetency = "Persistence";
+
+//var job = new Job(jobName, employerName, jobLocation, jobType, jobCoreCompetency);
+//var jobStr = job.ToString();
