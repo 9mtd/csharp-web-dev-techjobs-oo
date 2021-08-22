@@ -3,8 +3,6 @@ namespace TechJobsOO
 {
     public class Employer
 
-    //it would be useful for an Employer object to have an address,
-    //a primary contact, and a list of jobs available at that employer.
     {
         public int Id { get; }
         private static int nextId = 1;

@@ -19,7 +19,7 @@ namespace TechJobsOO
         }
 
 
-        // DONE: Add custom Equals(), GetHashCode(), and ToString() methods.
+        //Add custom Equals(), GetHashCode(), and ToString() methods.
         public override bool Equals(object obj)
         {
             return obj is PositionType positionType &&

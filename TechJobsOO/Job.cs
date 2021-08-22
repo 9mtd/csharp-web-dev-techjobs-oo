@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace TechJobsOO
 {
     public class Job
     {
+        public const string DataNotAvailable = "Data not available";
+
         public int Id { get; }
         private static int nextId = 1;
 
@@ -14,10 +18,10 @@ namespace TechJobsOO
 
 
 
-        // DONE: Add the two necessary constructors.
-        //Part a. Code a constructor to initialize the id field with a unique value.
+        //Add the two necessary constructors.
+        //Code a constructor to initialize the id field with a unique value.
         //This constructor should take no parameters.
-           public Job()
+        public Job()
         {
             Id = nextId;
             nextId++;
@@ -25,18 +29,18 @@ namespace TechJobsOO
 
         //Code a second constructor that takes 5 parameters and assigns values to
         //name, employerName, employerLocation, jobType, and jobCoreCompetency.
-        //Also, this constructor should call the first in order to initialize the id field.
+        //This constructor should call the first in order to initialize the id field.
 
         public Job(string name, string employer, string employerLocation, string positionType, string coreCompetency) : this()
         {
             Name = name;
-            EmployerName = new Employer { Value = employer};
-            EmployerLocation = new Location { Value = employerLocation};
-            JobType = new PositionType { Value = positionType};
-            JobCoreCompetency = new CoreCompetency { value = coreCompetency};
+            EmployerName = new Employer { Value = employer };
+            EmployerLocation = new Location { Value = employerLocation };
+            JobType = new PositionType { Value = positionType };
+            JobCoreCompetency = new CoreCompetency { value = coreCompetency };
         }
 
-        // DONE: Generate Equals() and GetHashCode() methods.
+        //Generate Equals() and GetHashCode() methods.
         public override bool Equals(object obj)
         {
             return obj is Job job &&
@@ -48,15 +52,18 @@ namespace TechJobsOO
             return HashCode.Combine(Id);
         }
 
-        // DONE: Create ToString() method. Return a blank line.
+        //Create ToString() method.
         public override string ToString()
         {
-            if (Id == 0)
-            {
-                return "empty field";
-            }
-            return $"\nId: {Id}\n Name: {Name}\n Employer: {EmployerName}\n Location: {EmployerLocation}\n Position Type: {JobType}\n Core Competency: {JobCoreCompetency}\n";
-        }
+          
+            return $"\nId: {Id}\n Name: {CheckEmptyString(Name)}\n Employer: {CheckEmptyString(EmployerName.ToString())}\n Location: {CheckEmptyString(EmployerLocation.ToString())}\n Position Type: {CheckEmptyString(JobType.ToString())}\n Core Competency: {CheckEmptyString(JobCoreCompetency.ToString())}\n";
 
         }
+
+        private string CheckEmptyString(string actualValue)
+        {
+            //using ternary operator
+            return string.IsNullOrEmpty(actualValue) ? DataNotAvailable : actualValue;
+        }
+    }
 }

@@ -89,18 +89,24 @@ namespace TechJobsTests
         }
 
         [TestMethod]
-        public void TestGasOverfillException()
+        public void TestIfAFieldIsEmpty()
         {
-            test_job.Name = "0";
-            Assert.Fail("Data not available");
+            var job = new Job("", "", "", "", "");
+            var jobStr = job.ToString();
+
+            Assert.IsTrue(jobStr.Contains($"Name: {Job.DataNotAvailable}\n"));
+            Assert.IsTrue(jobStr.Contains($"Employer: {Job.DataNotAvailable}\n"));
+            Assert.IsTrue(jobStr.Contains($"Location: {Job.DataNotAvailable}\n"));
+            Assert.IsTrue(jobStr.Contains($"Position Type: {Job.DataNotAvailable}\n"));
+            Assert.IsTrue(jobStr.Contains($"Core Competency: {Job.DataNotAvailable}\n"));
+        }
 
 
 
 
 
 
-
-}
+    }
 }
 
 
