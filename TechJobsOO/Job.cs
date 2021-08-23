@@ -30,14 +30,13 @@ namespace TechJobsOO
         //Code a second constructor that takes 5 parameters and assigns values to
         //name, employerName, employerLocation, jobType, and jobCoreCompetency.
         //This constructor should call the first in order to initialize the id field.
-
-        public Job(string name, string employer, string employerLocation, string positionType, string coreCompetency) : this()
+        public Job(string name, Employer employer, Location employerLocation, PositionType positionType, CoreCompetency coreCompetency) : this()
         {
             Name = name;
-            EmployerName = new Employer(employer);
-            EmployerLocation = new Location(employerLocation);
-            JobType = new PositionType(positionType);
-            JobCoreCompetency = new CoreCompetency(coreCompetency);
+            EmployerName = employer;
+            EmployerLocation = employerLocation;
+            JobType = positionType;
+            JobCoreCompetency = coreCompetency;
         }
 
         //Generate Equals() and GetHashCode() methods.
@@ -55,15 +54,14 @@ namespace TechJobsOO
         //Create ToString() method.
         public override string ToString()
         {
-          
-            return $"\nId: {Id}\n Name: {CheckEmptyString(Name)}\n Employer: {CheckEmptyString(EmployerName.ToString())}\n Location: {CheckEmptyString(EmployerLocation.ToString())}\n Position Type: {CheckEmptyString(JobType.ToString())}\n Core Competency: {CheckEmptyString(JobCoreCompetency.ToString())}\n";
-
+            return $"\nId: {Id}\n Name: {CheckEmptyString(Name)}\n Employer: {CheckEmptyString(EmployerName?.ToString())}\n Location: {CheckEmptyString(EmployerLocation?.ToString())}\n Position Type: {CheckEmptyString(JobType?.ToString())}\n Core Competency: {CheckEmptyString(JobCoreCompetency?.ToString())}\n";
         }
 
         private string CheckEmptyString(string actualValue)
         {
-            //using ternary operator
+            //using ternary operator.If value is null or empty, call DataNotAvailable, else return actualValue
             return string.IsNullOrEmpty(actualValue) ? DataNotAvailable : actualValue;
         }
+
     }
 }

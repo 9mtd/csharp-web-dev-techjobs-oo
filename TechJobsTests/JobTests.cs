@@ -10,10 +10,10 @@ namespace TechJobsTests
     {
         private string Id = "1";
         private string JobName = "Product tester";
-        private string EmployerName = "ACME";
-        private string JobLocation = "Dessert";
-        private string JobType = "Quality control";
-        private string JobCoreCompetency = "persistence";
+        private Employer EmployerName = new Employer("ACME");
+        private Location JobLocation = new Location ("Dessert");
+        private PositionType JobType = new PositionType ("Quality control");
+        private CoreCompetency JobCoreCompetency = new CoreCompetency ("persistence");
 
 
         Job test_job;
@@ -91,7 +91,7 @@ namespace TechJobsTests
         [TestMethod]
         public void TestIfAFieldIsEmpty()
         {
-            var job = new Job("", "", "", "", "");
+            var job = new Job(null, null, null, null, null);
             var jobStr = job.ToString();
 
             Assert.IsTrue(jobStr.Contains($"Name: {Job.DataNotAvailable}\n"));
