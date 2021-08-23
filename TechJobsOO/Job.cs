@@ -34,10 +34,10 @@ namespace TechJobsOO
         public Job(string name, string employer, string employerLocation, string positionType, string coreCompetency) : this()
         {
             Name = name;
-            EmployerName = new Employer { Value = employer };
-            EmployerLocation = new Location { Value = employerLocation };
-            JobType = new PositionType { Value = positionType };
-            JobCoreCompetency = new CoreCompetency { value = coreCompetency };
+            EmployerName = new Employer(employer);
+            EmployerLocation = new Location(employerLocation);
+            JobType = new PositionType(positionType);
+            JobCoreCompetency = new CoreCompetency(coreCompetency);
         }
 
         //Generate Equals() and GetHashCode() methods.
