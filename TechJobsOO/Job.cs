@@ -17,8 +17,6 @@ namespace TechJobsOO
         public CoreCompetency JobCoreCompetency { get; set; }
 
 
-
-        //Add the two necessary constructors.
         //Code a constructor to initialize the id field with a unique value.
         //This constructor should take no parameters.
         public Job()
@@ -27,7 +25,7 @@ namespace TechJobsOO
             nextId++;
         }
 
-        //Code a second constructor that takes 5 parameters and assigns values to
+        //Code a constructor that takes 5 parameters and assigns values to
         //name, employerName, employerLocation, jobType, and jobCoreCompetency.
         //This constructor should call the first in order to initialize the id field.
         public Job(string name, Employer employer, Location employerLocation, PositionType positionType, CoreCompetency coreCompetency) : this()
@@ -54,7 +52,12 @@ namespace TechJobsOO
         //Create ToString() method.
         public override string ToString()
         {
-            return $"\nId: {Id}\n Name: {CheckEmptyString(Name)}\n Employer: {CheckEmptyString(EmployerName?.ToString())}\n Location: {CheckEmptyString(EmployerLocation?.ToString())}\n Position Type: {CheckEmptyString(JobType?.ToString())}\n Core Competency: {CheckEmptyString(JobCoreCompetency?.ToString())}\n";
+            return $"\nId: {Id}" +
+                $"\n Name: {CheckEmptyString(Name)}" +
+                $"\n Employer: {CheckEmptyString(EmployerName?.ToString())}" +
+                $"\n Location: {CheckEmptyString(EmployerLocation?.ToString())}" +
+                $"\n Position Type: {CheckEmptyString(JobType?.ToString())}" +
+                $"\n Core Competency: {CheckEmptyString(JobCoreCompetency?.ToString())}\n";
         }
 
         private string CheckEmptyString(string actualValue)
