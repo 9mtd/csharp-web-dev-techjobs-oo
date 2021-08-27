@@ -88,6 +88,7 @@ namespace TechJobsTests
 
         }
 
+
         [TestMethod]
         public void TestIfAFieldIsEmpty()
         {
